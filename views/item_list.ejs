@@ -1,0 +1,19 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+<ul>
+
+    <% if(item_list.length> 0) { %>
+    <%    item_list.forEach(item=>{ %>
+
+    <li><a href="<%=item.url%>">
+            <%=item.name%> 
+        </a>( <%=item.vendor.company_name%> )
+    </li>
+    <%} )%>
+
+    <% } else {%>
+    <p>-- No item to display --</p>
+    <% }%>
+
+</ul>
+<%- include('layout-end'); -%>

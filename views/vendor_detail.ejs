@@ -1,0 +1,27 @@
+<%- include('layout-top'); -%>
+
+<h1>Vendor:<%=vendor.company_name%></h1>
+<p><em>(Since:<%=vendor.register_date_f%>)</em></p>
+<p><%=vendor.description%></p>
+
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Items</h4>
+    <dl>
+        <%if(vendor_items.length>0){%>
+        <%vendor_items.forEach(item=>{%>
+        <hr>
+        <dt><a href="<%=item.url%>">
+                <%=item.name%></a></dt>
+        <dd><%=item.description%></dd>
+        <%})%>
+        <%} else {%>
+        <p>-- This vendor has no item. --</p>
+        <%}%>
+    </dl>
+</div>
+
+<hr>
+<p><a href="<%=vendor.url+'/delete'%>">Delete vendor</a></p>
+<p><a href="<%=vendor.url+'/update'%>">Update vendor</a></p>
+
+<%- include('layout-end'); -%>

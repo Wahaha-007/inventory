@@ -1,0 +1,82 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+
+<form action="" method="post">
+
+  <div class="form-group">
+    <%const bname = (locals.item)? item.name:""%>
+    <label for="name">Name:</label>
+    <input type="text" id="name" class="form-control" placeholder="Item name" name="name" required="true"
+      value="<%=bname%>">
+  </div>
+
+  <div>
+    <label for="vendor">Vendor:</label>
+    <select name="vendor" id="vendor" class="form-control" placeholder="Select vendor" required="true">
+      <%vendors.sort(function(a,b) { 
+      let textA = a.company_name.toUpperCase(); 
+      let textB = b.company_name.toUpperCase();
+      return (textA < textB) ? -1: (textA > textB) ? 1:0;
+    })%>
+
+      <% vendors.forEach((vendor)=>{
+    if(locals.item) {
+    const tmp = ((vendor._id.toString()===item.vendor._id.toString())
+              || (vendor._id.toString()===item.vendor)) ? true : false;%>
+      <option value="<%=vendor._id%>" selected="<%=tmp%>">
+        <%=vendor.company_name%></option>
+      <%} else {%>
+      <option value="<%=vendor._id%>">
+        <%=vendor.company_name%></option>
+      <%}})%>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <br>
+    <%const bsummary = (locals.item)? item.description:""%>
+    <label for="description">Description:</label>
+    <textarea id="description" class="form-control" placeholder="Description" name="description"
+      required="true"><%=bsummary%></textarea>
+  </div>
+
+  <div class="form-group">
+    <%const bprice = (locals.item)? item.price:""%>
+    <label for="price">Price:</label>
+    <input type="number" id="price" class="form-control" placeholder="Price" name="price" required="true"
+      value="<%=bprice%>">
+  </div>
+
+  <div class="form-group">
+    <%const bstock = (locals.item)? item.stock:""%>
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" class="form-control" placeholder="Stock" name="stock" required="true"
+      value="<%=bstock%>">
+  </div>
+
+  <div class="form-group">
+    <label for="category">Category:</label>
+    <div>
+      <%categories.forEach((category,index)=>{%>
+      <div style="display: inline; padding-right:10px;">
+        <input type="checkbox" name="category" id="<%=category._id%>" class="checkbox-input" value="<%=category._id%>"
+          <%=categories[index].checked%>>
+        <label for="category._id"><%=category.category_name%></label>
+      </div>
+      <%})%>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<%if(locals.errors) {%>
+<ul>
+  <%errors.forEach(error=>{%>
+  <li><%=error.msg%></li>
+  <%})%>
+</ul>
+<%}%>
+                
+                
+<%- include('layout-end'); -%>

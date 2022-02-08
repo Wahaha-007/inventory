@@ -1,0 +1,20 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+<ul style="width:70vw">
+
+    <% if(vendor_list.length> 0) { %>
+    <%    vendor_list.forEach(vendor=>{ %>
+
+    <li><a href="<%=vendor.url%>">
+            <%=vendor.company_name%>
+        </a><span><em>(<%=vendor.register_date_f%>)</em></span>
+        <p><%=vendor.description%></p>
+    </li>
+    <%} )%>
+
+    <% } else {%>
+    <p>-- No vendor to display --</p>
+    <% }%>
+
+</ul>
+<%- include('layout-end'); -%>

@@ -1,0 +1,20 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+<ul style="width:70vw">
+
+    <% if(category_list.length> 0) { %>
+    <%    category_list.forEach(category=>{ %>
+
+    <li><a href="<%=category.url%>">
+            <%=category.category_name%>
+        </a>
+        <p><%=category.description%></p>
+    </li>
+    <%} )%>
+
+    <% } else {%>
+    <p>-- No genre to display --</p>
+    <% }%>
+
+</ul>
+<%- include('layout-end'); -%>

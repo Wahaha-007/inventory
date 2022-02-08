@@ -1,0 +1,33 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+
+<form action="" method="post">
+  <div class="form-group">
+    <%const com_name = (locals.vendor)? vendor.company_name:""%>
+    <%const desc = (locals.vendor)? vendor.description:""%>
+    <%const reg_date = (locals.vendor)? vendor.register_date_only:""%>
+
+    <label for="company_name">Company Name:</label>
+    <input type="text" id="company_name" class="form-control" placeholder="Company official name" name="company_name"
+      required="true" value="<%=com_name%>">
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" class="form-control" placeholder="Company Description" name="description" required="true"><%=desc%></textarea>
+    <br>
+    <label for="register_date">Register Date:</label>
+    <input type="date" id="register_date" class="form-control" name="register_date" value="<%=reg_date%>">
+    <br><br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<%if(locals.errors) {%>
+<ul>
+  <%errors.forEach(error=>{%>
+  <li><%=error.msg%></li>
+  <%})%>
+</ul>
+<%}%>
+        
+        
+<%- include('layout-end'); -%>

@@ -1,0 +1,30 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+
+<form action="" method="post">
+  <div class="form-group">
+    <%const cname = (locals.category)? category.category_name:""%>
+    <%const descr = (locals.category)? category.description:""%>
+
+    <label for="category_name">Category:</label>
+    <input type="text" id="category_name" class="form-control" placeholder="Watch type" name="category_name"
+      value="<%=cname%>" required>
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" class="form-control" placeholder="Watch details" name="description" required="true"><%=descr%></textarea>
+
+    <br><br>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<%if(locals.errors) {%>
+<ul>
+  <%errors.forEach(error=>{%>
+  <li><%=error.msg%></li>
+  <%})%>
+</ul>
+<%}%>
+
+
+<%- include('layout-end'); -%>

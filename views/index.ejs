@@ -1,0 +1,10 @@
+<%- include('layout-top'); -%>
+<h1><%=title%></h1>
+<p>Welcome to <em>Local Watch Stock</em>, a very basic Express website to complete Odin Express project</p>
+<h1>Dynamic Content</h1>
+<ul>
+  <li><strong>Items:</strong><%=data.item_count%></li>
+  <li><strong>Vendors:</strong><%=data.vendor_count%></li>
+  <li><strong>Categories:</strong><%=data.category_count%></li>
+</ul>
+<%- include('layout-end'); -%>

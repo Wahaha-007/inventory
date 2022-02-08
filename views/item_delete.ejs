@@ -1,0 +1,25 @@
+<%- include('layout-top'); -%>
+<h1>Name : <%=item.name%></h1>
+<p><strong>Vendor:</strong><a href="<%=item.vendor.url%>">
+    <%=item.vendor.company_name%></a> </p>
+<p><strong>Description:</strong><%=item.description%></p>
+<p><strong>Price:</strong><%=item.price%></p>
+<p><strong>Stock:</strong><%=item.stock%></p>
+
+<p><strong>Category:</strong>
+  <%item.category.forEach((val,index)=>{%>
+  <a href="<%=val.url%>">
+    <%=val.category_name%></a>
+  <%if(index < item.category.length-1) {%>
+  <span>,</span>
+  <%}})%>
+</p>
+<hr>
+<p>Do you really want to delete this Item?</p>
+<form method="POST" action="">
+  <div class="form-group">
+    <input type="hidden" id="itemid" class="form-control" name="itemid" value="<%=item._id%>" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Delete</button>
+</form>
+<%- include('layout-end'); -%>
